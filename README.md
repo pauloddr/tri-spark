@@ -33,11 +33,15 @@ spark.play(1, 1, 0, SPARK_MODE)
 
 ### `SPARK_MODE`
 
-The default mode. Draws a eight-point star that quickly grows and fades out.
+The default mode. Draws a eight-point star that quickly grows and fades out. The bases of the triangles do not shrink.
+
+### `THIN_SPARK_MODE`
+
+Same as `SPARK_MODE` but the bases of the triangles will shrink, creating a more slim effect.
 
 ### `HOLLOW_SPARK_MODE`
 
-Same as the default mode, but with a hole in the center, and the width of the triangles do not change during animation.
+Same as `SPARK_MODE`, but with a hole in the center.
 
 ### `ARC_SPARK_MODE`
 
@@ -55,20 +59,35 @@ Handles a group of reusable sparks that can be played simultaneously.
 Setup it with:
 
 ```javascript
-var sparkCloud = new TriSparkCloud(10) // maximum of 8 simultaneous sparks
+var sparkCloud = new TriSparkCloud(10) // maximum of 10 simultaneous sparks
 sparkCloud.addToScene(scene)
 ```
 
 Then use the same methods as you would with a single instance:
 
 ```javascript
-// Play three sparks at once
+// Play three sparks at once in different places
 sparkCloud.play(1, 1, 0)
 sparkCloud.play(2, 1, 0)
 sparkCloud.play(3, 1, 0)
 ```
 
-In the example above, if an eleventh spark is requested to play while ten others are still playing, the first spark will be stopped, reset, and reused.
+In the example above, if an eleventh spark is requested to play while ten others are still playing, the first spark will be stopped and reused.
+
+## Options
+
+Options can be defined after any `TriSpark` or `TriSparkCloud` instance is created.
+
+Default values are specified below.
+
+```javascript
+var spark = new TriSpark()
+spark.color = '#FF00FF'
+spark.opacity = 40    // 0 = transparent, 100 = opaque
+spark.size = 1        // affects the triangle length
+spark.gutter = 0      // the space between the center and the base of each triangle
+spark.triangles = 8   // any even number greater than 2
+```
 
 ## WIP
 
